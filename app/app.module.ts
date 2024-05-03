@@ -9,6 +9,9 @@ import { RestaurantFinder } from '../src/main/services/restaurant-finder';
 import { RestaurantFindByIdController } from '../src/main/controllers/restaurant-find-by-id.controller';
 import { RestaurantCreateController } from '../src/main/controllers/restaurant-create.controller';
 import { RestaurantCreator } from '../src/main/services/restaurant-creator';
+import { RestaurantUpdateController } from '../src/main/controllers/restaurant-update.controller';
+import { RestaurantPartialUpdateController } from '../src/main/controllers/restaurant-partial-update.controller';
+import { RestaurantUpdater } from '../src/main/services/restaurant-updater';
 
 @Module({
   imports: [
@@ -30,11 +33,14 @@ import { RestaurantCreator } from '../src/main/services/restaurant-creator';
     RestaurantFindAllController,
     RestaurantFindByIdController,
     RestaurantCreateController,
+    RestaurantUpdateController,
+    RestaurantPartialUpdateController,
   ],
   providers: [
     RestaurantCSVLoader,
     RestaurantFinder,
     RestaurantCreator,
+    RestaurantUpdater,
     {
       provide: 'RestaurantRepository',
       useClass: RestaurantPostgreSQLRepository,
