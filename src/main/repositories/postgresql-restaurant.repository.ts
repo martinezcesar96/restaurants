@@ -32,7 +32,7 @@ export class RestaurantPostgreSQLRepository implements RestaurantRepository {
   }
 
   public findById(id: string): Promise<Restaurant | null> {
-    throw this.findById(id);
+    return this.repository.findOneBy({ id: id });
   }
 
   public async findAll(): Promise<Restaurant[]> {

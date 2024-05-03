@@ -1,1 +1,5 @@
-export class RestaurantNotFoundException extends Error {}
+export class RestaurantNotFoundException extends Error {
+  constructor() {
+    super('Restaurant Not Found');
+  }
+}

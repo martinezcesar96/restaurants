@@ -6,6 +6,7 @@ import { RestaurantPostgreSQLRepository } from '../src/main/repositories/postgre
 import { LoadCSVDataController } from '../src/main/controllers/load-csv-data.controller';
 import { RestaurantFindAllController } from '../src/main/controllers/restaurant-find-all.controller';
 import { RestaurantFinder } from '../src/main/services/restaurant-finder';
+import { RestaurantFindByIdController } from '../src/main/controllers/restaurant-find-by-id.controller';
 
 @Module({
   imports: [
@@ -22,7 +23,11 @@ import { RestaurantFinder } from '../src/main/services/restaurant-finder';
     }),
     TypeOrmModule.forFeature([RestaurantEntity]),
   ],
-  controllers: [LoadCSVDataController, RestaurantFindAllController],
+  controllers: [
+    LoadCSVDataController,
+    RestaurantFindAllController,
+    RestaurantFindByIdController,
+  ],
   providers: [
     RestaurantCSVLoader,
     RestaurantFinder,
