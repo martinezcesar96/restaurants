@@ -2,5 +2,6 @@ import { Restaurant } from '../models/restaurant';
 
 export interface RestaurantRepository {
   findById(id: string): Promise<Restaurant | null>;
-  create(restaurant: Restaurant): Promise<void>;
+  save(restaurant: Restaurant): Promise<void>;
+  saveAll(restaurant: Restaurant[]): Promise<void>;
 }

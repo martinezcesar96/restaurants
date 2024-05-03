@@ -1,6 +1,6 @@
 export class Restaurant {
   public id: string | null = null;
-  public rating: string | null = null;
+  public rating: number | null = null;
   public name: string | null = null;
   public site: string | null = null;
   public email: string | null = null;
@@ -8,6 +8,6 @@ export class Restaurant {
   public street: string | null = null;
   public city: string | null = null;
   public state: string | null = null;
-  public lat: string | null = null;
-  public lng: string | null = null;
+  public lat: number | null = null;
+  public lng: number | null = null;
 }
