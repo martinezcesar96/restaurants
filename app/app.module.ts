@@ -7,6 +7,8 @@ import { LoadCSVDataController } from '../src/main/controllers/load-csv-data.con
 import { RestaurantFindAllController } from '../src/main/controllers/restaurant-find-all.controller';
 import { RestaurantFinder } from '../src/main/services/restaurant-finder';
 import { RestaurantFindByIdController } from '../src/main/controllers/restaurant-find-by-id.controller';
+import { RestaurantCreateController } from '../src/main/controllers/restaurant-create.controller';
+import { RestaurantCreator } from '../src/main/services/restaurant-creator';
 
 @Module({
   imports: [
@@ -27,10 +29,12 @@ import { RestaurantFindByIdController } from '../src/main/controllers/restaurant
     LoadCSVDataController,
     RestaurantFindAllController,
     RestaurantFindByIdController,
+    RestaurantCreateController,
   ],
   providers: [
     RestaurantCSVLoader,
     RestaurantFinder,
+    RestaurantCreator,
     {
       provide: 'RestaurantRepository',
       useClass: RestaurantPostgreSQLRepository,

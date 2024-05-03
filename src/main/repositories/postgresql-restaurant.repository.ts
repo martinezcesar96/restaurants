@@ -39,7 +39,7 @@ export class RestaurantPostgreSQLRepository implements RestaurantRepository {
     return this.repository.find();
   }
 
-  public save(restaurant: Restaurant): Promise<void> {
-    throw new Error('Method not implemented.');
+  public async save(restaurant: Restaurant): Promise<void> {
+    await this.repository.save(restaurant);
   }
 }

@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { RestaurantFakeRepository } from './util/restaurant-fake.repository';
 import { RestaurantFinder } from '../main/services/restaurant-finder';
 import { Restaurant } from '../main/models/restaurant';
-import { RestaurantNotFoundException } from '../main/exceptions/restaurant-not-found.exception';
+import { ResourceNotFoundException } from '../main/exceptions/resource-not-found.exception';
 
 describe('Restaurant - Find By Id', () => {
   let restaurantFinder: RestaurantFinder;
@@ -43,7 +43,7 @@ describe('Restaurant - Find By Id', () => {
         .mockImplementation(() => Promise.resolve(null));
 
       await expect(restaurantFinder.findById('abc-def-fgh')).rejects.toThrow(
-        RestaurantNotFoundException,
+        ResourceNotFoundException,
       );
     });
   });

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RestaurantRepository } from '../repositories/restaurant.repository';
 import { Restaurant } from '../models/restaurant';
-import { RestaurantNotFoundException } from '../exceptions/restaurant-not-found.exception';
+import { ResourceNotFoundException } from '../exceptions/resource-not-found.exception';
 
 @Injectable()
 export class RestaurantFinder {
@@ -13,7 +13,7 @@ export class RestaurantFinder {
   public async findById(id: string): Promise<Restaurant> {
     const restaurant = await this.restaurantRepository.findById(id);
     if (!restaurant) {
-      throw new RestaurantNotFoundException();
+      throw new ResourceNotFoundException();
     }
     return restaurant;
   }
