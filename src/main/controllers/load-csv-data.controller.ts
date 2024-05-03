@@ -8,7 +8,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { RestaurantCSVLoader } from '../services/restaurant-csv-loader';
 
 @Controller('restaurants')
-export class UploadCSVDataController {
+export class LoadCSVDataController {
   constructor(private readonly restaurantCSVLoader: RestaurantCSVLoader) {}
 
   @Post('upload')

@@ -3,7 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantEntity } from '../src/main/entities/restaurant.entity';
 import { RestaurantCSVLoader } from '../src/main/services/restaurant-csv-loader';
 import { RestaurantPostgreSQLRepository } from '../src/main/repositories/postgresql-restaurant.repository';
-import { UploadCSVDataController } from '../src/main/controllers/upload-csv-data.controller';
+import { LoadCSVDataController } from '../src/main/controllers/load-csv-data.controller';
+import { RestaurantFindAllController } from '../src/main/controllers/restaurant-find-all.controller';
+import { RestaurantFinder } from '../src/main/services/restaurant-finder';
 
 @Module({
   imports: [
@@ -20,9 +22,10 @@ import { UploadCSVDataController } from '../src/main/controllers/upload-csv-data
     }),
     TypeOrmModule.forFeature([RestaurantEntity]),
   ],
-  controllers: [UploadCSVDataController],
+  controllers: [LoadCSVDataController, RestaurantFindAllController],
   providers: [
     RestaurantCSVLoader,
+    RestaurantFinder,
     {
       provide: 'RestaurantRepository',
       useClass: RestaurantPostgreSQLRepository,

@@ -12,8 +12,8 @@ export class RestaurantPostgreSQLRepository implements RestaurantRepository {
     private readonly repository: Repository<RestaurantEntity>,
   ) {}
 
-  public async saveAll(restaurant: Restaurant[]): Promise<void> {
-    const entities = restaurant.map((restaurant) => {
+  public async saveAll(restaurants: Restaurant[]): Promise<void> {
+    const entities = restaurants.map((restaurant) => {
       const entity = new RestaurantEntity();
       entity.id = restaurant.id;
       entity.rating = restaurant.rating;
@@ -32,7 +32,11 @@ export class RestaurantPostgreSQLRepository implements RestaurantRepository {
   }
 
   public findById(id: string): Promise<Restaurant | null> {
-    throw new Error('Method not implemented.');
+    throw this.findById(id);
+  }
+
+  public async findAll(): Promise<Restaurant[]> {
+    return this.repository.find();
   }
 
   public save(restaurant: Restaurant): Promise<void> {
