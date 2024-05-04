@@ -32,6 +32,10 @@ $ npm install
 
 ## Running the app
 
+Before you start app you need configure an env file.
+
+Please check ```.env.example``` and then you can continue.
+
 ```bash
 $ npm run start
 ```
@@ -48,7 +52,55 @@ Open in your browser ```/docs``` to check swagger definition.
 Example: ``` http://localhost:3000/docs ```
 
 ## Running in docker
-TBD
+Please check [Running in docker with Make](d) if you run in only one step.
+
+Pre-requisites:
+  - [docker](https://docs.docker.com/get-docker/) installed.
+  - build docker image previously (if you have not docker image, execute optional steps)
+  - postgresql server (if you have not a postgresql server you need execute the follow optional steps)
+
+Optional - Build Image
+```bash
+$ docker build --no-cache -t restaurants:v1 .
+```
+
+
+Optional - Postgresql:
+```bash
+$ docker network create net;
+$ docker run --name postgresql \
+		-e POSTGRES_USER=postgres \
+		-e POSTGRES_PASSWORD=mysecretpassword \
+		-p 5432:5432 \
+		--network net \
+		-d postgis/postgis
+```
+
+For the next command "network" argument and "restart" argument are optional.
+```bash
+$ docker run --name ms-restaurants \
+		-e APP_NAME=ms-restaurants \
+		-e APP_PORT=3000 \
+		-e DB_USER=postgres \
+		-e DB_PASS=mysecretpassword \
+		-e DB_NAME=restaurants \
+		-e DB_HOST=postgresql \
+		-e DB_PORT=5432 \
+		-p 3000:3000 \
+		--network net \
+		--restart=unless-stopped \
+		-d restaurants:v1
+```
+## Running in docker with Make
+Pre-requisites:
+  - [docker](https://docs.docker.com/get-docker/) installed.
+  - make installed (```sudo apt-get install make``` or ```sudo yum install make```)
+
+Only you need type on your shell the follow command.
+```bash
+$ make run
+```
+
 
 ## Support
 
