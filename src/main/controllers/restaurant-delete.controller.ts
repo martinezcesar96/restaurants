@@ -2,6 +2,7 @@ import {
   Controller,
   Delete,
   HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   UseFilters,
@@ -22,7 +23,7 @@ export class RestaurantDeleteController {
   constructor(private readonly restaurantEraser: RestaurantEraser) {}
 
   @Delete(':id')
-  @HttpCode(204)
+  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiNoContentResponse({
     description: 'The record has been successfully deleted.',
   })
