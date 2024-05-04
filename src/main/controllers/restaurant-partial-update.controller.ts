@@ -1,4 +1,11 @@
-import { Body, Controller, Param, Patch, UseFilters } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  UseFilters,
+} from '@nestjs/common';
 import { CustomExceptionFilter } from '../exceptions/custom-exception.filter';
 import { RestaurantUpdater } from '../services/restaurant-updater';
 import { PartialRestaurant } from '../models/partial-restaurant';
@@ -10,7 +17,7 @@ export class RestaurantPartialUpdateController {
 
   @Patch(':id')
   public findById(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() restaurant: PartialRestaurant,
   ): Promise<void> {
     restaurant.id = id;

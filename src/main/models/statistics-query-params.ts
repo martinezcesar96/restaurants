@@ -1,6 +1,6 @@
 import { IsLatitude, IsLongitude, IsNumberString } from 'class-validator';
 
-export class StatisticsRequest {
+export class StatisticsQueryParams {
   @IsLatitude()
   public latitude!: number;
 
