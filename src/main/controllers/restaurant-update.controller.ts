@@ -1,6 +1,8 @@
 import {
   Body,
   Controller,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Put,
@@ -22,6 +24,7 @@ export class RestaurantUpdateController {
   constructor(private readonly restaurantUpdater: RestaurantUpdater) {}
 
   @Put(':id')
+  @HttpCode(HttpStatus.CREATED)
   @ApiCreatedResponse({
     description: 'The record has been successfully created.',
   })

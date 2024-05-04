@@ -7,7 +7,6 @@ DB_PASS=mysecretpassword
 DB_NAME=restaurants
 
 run: clean build create-network db-run ms-run
-	# @git checkout .
 
 build:
 	@docker build --no-cache -t $(IMAGE):$(SHA) .
