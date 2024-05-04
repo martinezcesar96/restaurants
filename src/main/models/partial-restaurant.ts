@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsInt,
   IsLatitude,
@@ -12,47 +13,61 @@ import {
 export class PartialRestaurant {
   @IsUUID()
   @IsOptional()
-  public id: string | null = null;
+  @ApiProperty({
+    example: '851f799f-0852-439e-b9b2-df92c43e7672',
+    nullable: true,
+  })
+  public id!: string;
 
   @IsInt()
   @Max(4)
   @Min(0)
   @IsOptional()
-  public rating: number | null = null;
+  @ApiProperty({ example: 1, nullable: true })
+  public rating!: number;
 
   @IsString()
   @IsOptional()
-  public name: string | null = null;
+  @ApiProperty({ example: 'Barajas, Bahena and Kano', nullable: true })
+  public name!: string;
 
   @IsString()
   @IsOptional()
-  public site: string | null = null;
+  @ApiProperty({ example: 'https://federico.com', nullable: true })
+  public site!: string;
 
   @IsString()
   @IsOptional()
-  public email: string | null = null;
+  @ApiProperty({ example: 'Anita_Mata71@hotmail.com', nullable: true })
+  public email!: string;
 
   @IsString()
   @IsOptional()
-  public phone: string | null = null;
+  @ApiProperty({ example: '534 814 204', nullable: true })
+  public phone!: string;
 
   @IsString()
   @IsOptional()
-  public street: string | null = null;
+  @ApiProperty({ example: '82247 Mariano Entrada', nullable: true })
+  public street!: string;
 
   @IsString()
   @IsOptional()
-  public city: string | null = null;
+  @ApiProperty({ example: 'Mérida Alfredotown', nullable: true })
+  public city!: string;
 
   @IsString()
   @IsOptional()
-  public state: string | null = null;
+  @ApiProperty({ example: 'Durango', nullable: true })
+  public state!: string;
 
   @IsLatitude()
   @IsOptional()
-  public lat: number | null = null;
+  @ApiProperty({ example: 19.4400570537131, nullable: true })
+  public lat!: number;
 
   @IsLongitude()
   @IsOptional()
-  public lng: number | null = null;
+  @ApiProperty({ example: -99.1270470974249, nullable: true })
+  public lng!: number;
 }

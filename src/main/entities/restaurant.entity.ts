@@ -4,37 +4,37 @@ import { Restaurant } from '../models/restaurant';
 @Entity('Restaurant')
 export class RestaurantEntity {
   @PrimaryColumn({ type: 'uuid' })
-  public id: string | null = null;
+  public id!: string;
 
   @Column({ type: 'int', enum: [0, 1, 2, 3, 4] })
-  public rating: number | null = null;
+  public rating!: number;
 
   @Column({ type: 'text' })
-  public name: string | null = null;
+  public name!: string;
 
   @Column({ type: 'text' })
-  public site: string | null = null;
+  public site!: string;
 
   @Column({ type: 'text' })
-  public email: string | null = null;
+  public email!: string;
 
   @Column({ type: 'text' })
-  public phone: string | null = null;
+  public phone!: string;
 
   @Column({ type: 'text' })
-  public street: string | null = null;
+  public street!: string;
 
   @Column({ type: 'text' })
-  public city: string | null = null;
+  public city!: string;
 
   @Column({ type: 'text' })
-  public state: string | null = null;
+  public state!: string;
 
   @Column({ type: 'float' })
-  public lat: number | null = null;
+  public lat!: number;
 
   @Column({ type: 'float' })
-  public lng: number | null = null;
+  public lng!: number;
 
   @Index({ spatial: true })
   @Column({
@@ -43,7 +43,7 @@ export class RestaurantEntity {
     srid: 4326,
     nullable: true,
   })
-  public location: Point | null = null;
+  public location!: Point;
 
   @Column({ type: 'boolean' })
   public deleted: boolean = false;
@@ -63,7 +63,7 @@ export class RestaurantEntity {
     entity.lng = dto.lng;
     entity.location = {
       type: 'Point',
-      coordinates: [dto.lng!, dto.lat!],
+      coordinates: [dto.lng, dto.lat],
     };
     entity.deleted = false;
     return entity;

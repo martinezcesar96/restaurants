@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsInt,
   IsLatitude,
@@ -10,37 +11,48 @@ import {
 
 export class Restaurant {
   @IsUUID()
-  public id: string | null = null;
+  @ApiProperty({ example: '851f799f-0852-439e-b9b2-df92c43e7672' })
+  public id!: string;
 
   @IsInt()
   @Max(4)
   @Min(0)
-  public rating: number | null = null;
+  @ApiProperty({ example: 1 })
+  public rating!: number;
 
   @IsString()
-  public name: string | null = null;
+  @ApiProperty({ example: 'Barajas, Bahena and Kano' })
+  public name!: string;
 
   @IsString()
-  public site: string | null = null;
+  @ApiProperty({ example: 'https://federico.com' })
+  public site!: string;
 
   @IsString()
-  public email: string | null = null;
+  @ApiProperty({ example: 'Anita_Mata71@hotmail.com' })
+  public email!: string;
 
   @IsString()
-  public phone: string | null = null;
+  @ApiProperty({ example: '534 814 204' })
+  public phone!: string;
 
   @IsString()
-  public street: string | null = null;
+  @ApiProperty({ example: '82247 Mariano Entrada' })
+  public street!: string;
 
   @IsString()
-  public city: string | null = null;
+  @ApiProperty({ example: 'Mérida Alfredotown' })
+  public city!: string;
 
   @IsString()
-  public state: string | null = null;
+  @ApiProperty({ example: 'Durango' })
+  public state!: string;
 
   @IsLatitude()
-  public lat: number | null = null;
+  @ApiProperty({ example: 19.4400570537131 })
+  public lat!: number;
 
   @IsLongitude()
-  public lng: number | null = null;
+  @ApiProperty({ example: -99.1270470974249 })
+  public lng!: number;
 }

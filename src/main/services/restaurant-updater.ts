@@ -15,9 +15,7 @@ export class RestaurantUpdater {
   }
 
   public async partial(restaurant: Restaurant): Promise<void> {
-    const found = await this.restaurantRepository.findById(
-      restaurant.id as string,
-    );
+    const found = await this.restaurantRepository.findById(restaurant.id);
 
     if (!found) {
       throw new ResourceNotFoundException();
