@@ -16,22 +16,10 @@ import { RestaurantDeleteController } from '../src/main/controllers/restaurant-d
 import { RestaurantEraser } from '../src/main/services/restaurant-eraser';
 import { RestaurantStatisticsController } from '../src/main/controllers/restaurant-statistics.controller';
 import { RestaurantStatistics } from '../src/main/services/restaurant-statistics';
+import { DatabaseModule } from './database.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'mysecretpassword',
-      entities: [RestaurantEntity],
-      database: 'restaurants',
-      synchronize: true,
-      logging: false,
-    }),
-    TypeOrmModule.forFeature([RestaurantEntity]),
-  ],
+  imports: [DatabaseModule, TypeOrmModule.forFeature([RestaurantEntity])],
   controllers: [
     RestaurantStatisticsController,
     LoadCSVDataController,
