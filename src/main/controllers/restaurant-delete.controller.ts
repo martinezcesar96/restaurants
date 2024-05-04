@@ -3,6 +3,7 @@ import {
   Delete,
   HttpCode,
   Param,
+  ParseUUIDPipe,
   UseFilters,
 } from '@nestjs/common';
 import { CustomExceptionFilter } from '../exceptions/custom-exception.filter';
@@ -15,7 +16,7 @@ export class RestaurantDeleteController {
 
   @Delete(':id')
   @HttpCode(204)
-  public findById(@Param('id') id: string): Promise<void> {
+  public findById(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.restaurantEraser.soft(id);
   }
 }
