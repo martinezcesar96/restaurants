@@ -6,4 +6,9 @@ export interface RestaurantRepository {
   save(restaurant: Restaurant): Promise<void>;
   saveAll(restaurants: Restaurant[]): Promise<void>;
   softDelete(id: string): Promise<void>;
+  range(
+    latitude: number,
+    longitude: number,
+    radius: number,
+  ): Promise<Restaurant[]>;
 }

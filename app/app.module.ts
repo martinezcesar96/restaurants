@@ -14,6 +14,8 @@ import { RestaurantPartialUpdateController } from '../src/main/controllers/resta
 import { RestaurantUpdater } from '../src/main/services/restaurant-updater';
 import { RestaurantDeleteController } from '../src/main/controllers/restaurant-delete.controller';
 import { RestaurantEraser } from '../src/main/services/restaurant-eraser';
+import { RestaurantStatisticsController } from '../src/main/controllers/restaurant-statistics.controller';
+import { RestaurantStatistics } from '../src/main/services/restaurant-statistics';
 
 @Module({
   imports: [
@@ -26,11 +28,12 @@ import { RestaurantEraser } from '../src/main/services/restaurant-eraser';
       entities: [RestaurantEntity],
       database: 'restaurants',
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
     TypeOrmModule.forFeature([RestaurantEntity]),
   ],
   controllers: [
+    RestaurantStatisticsController,
     LoadCSVDataController,
     RestaurantFindAllController,
     RestaurantFindByIdController,
@@ -45,6 +48,7 @@ import { RestaurantEraser } from '../src/main/services/restaurant-eraser';
     RestaurantCreator,
     RestaurantUpdater,
     RestaurantEraser,
+    RestaurantStatistics,
     {
       provide: 'RestaurantRepository',
       useClass: RestaurantPostgreSQLRepository,
