@@ -5,4 +5,5 @@ export interface RestaurantRepository {
   findAll(): Promise<Restaurant[]>;
   save(restaurant: Restaurant): Promise<void>;
   saveAll(restaurants: Restaurant[]): Promise<void>;
+  softDelete(id: string): Promise<void>;
 }

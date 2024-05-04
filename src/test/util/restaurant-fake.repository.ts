@@ -17,4 +17,8 @@ export class RestaurantFakeRepository implements RestaurantRepository {
   saveAll(restaurants: Restaurant[]): Promise<void> {
     throw new Error('Method not implemented.');
   }
+
+  softDelete(id: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 }
