@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, Index, Point, PrimaryColumn } from 'typeorm';
 import { Restaurant } from '../models/restaurant';
 
 @Entity('Restaurant')
@@ -36,6 +36,15 @@ export class RestaurantEntity {
   @Column({ type: 'float' })
   public lng: number | null = null;
 
+  @Index({ spatial: true })
+  @Column({
+    type: 'geography',
+    spatialFeatureType: 'Point',
+    srid: 4326,
+    nullable: true,
+  })
+  public location: Point | null = null;
+
   @Column({ type: 'boolean' })
   public deleted: boolean = false;
 
@@ -52,6 +61,10 @@ export class RestaurantEntity {
     entity.state = dto.state;
     entity.lat = dto.lat;
     entity.lng = dto.lng;
+    entity.location = {
+      type: 'Point',
+      coordinates: [dto.lng!, dto.lat!],
+    };
     entity.deleted = false;
     return entity;
   }

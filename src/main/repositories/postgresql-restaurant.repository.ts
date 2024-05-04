@@ -41,4 +41,26 @@ export class RestaurantPostgreSQLRepository implements RestaurantRepository {
     found.deleted = true;
     await this.repository.save(found);
   }
+
+  public async range(
+    latitude: number,
+    longitude: number,
+    radius: number,
+  ): Promise<Restaurant[]> {
+    const origin = {
+      type: 'Point',
+      coordinates: [longitude, latitude],
+    };
+    const locations = await this.repository
+      .createQueryBuilder('Restaurant')
+      .where(
+        'ST_DWithin(location, ST_SetSRID(ST_GeomFromGeoJSON(:origin), ST_SRID(location)) ,:range)',
+      )
+      .setParameters({
+        origin: JSON.stringify(origin),
+        range: radius,
+      })
+      .getMany();
+    return locations;
+  }
 }

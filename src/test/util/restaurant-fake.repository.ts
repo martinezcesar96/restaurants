@@ -21,4 +21,8 @@ export class RestaurantFakeRepository implements RestaurantRepository {
   softDelete(id: string): Promise<void> {
     throw new Error('Method not implemented.');
   }
+
+  range(latitude: number, longitude: number, radius: number): Promise<Restaurant[]> {
+    throw new Error('Method not implemented.');
+  }
 }
