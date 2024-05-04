@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Restaurant } from '../models/restaurant';
 
 @Entity('Restaurant')
 export class RestaurantEntity {
@@ -34,4 +35,40 @@ export class RestaurantEntity {
 
   @Column({ type: 'float' })
   public lng: number | null = null;
+
+  @Column({ type: 'boolean' })
+  public deleted: boolean = false;
+
+  public static fromDto(dto: Restaurant): RestaurantEntity {
+    const entity = new RestaurantEntity();
+    entity.id = dto.id;
+    entity.rating = dto.rating;
+    entity.name = dto.name;
+    entity.site = dto.site;
+    entity.email = dto.email;
+    entity.phone = dto.phone;
+    entity.street = dto.street;
+    entity.city = dto.city;
+    entity.state = dto.state;
+    entity.lat = dto.lat;
+    entity.lng = dto.lng;
+    entity.deleted = false;
+    return entity;
+  }
+
+  public toDto(): Restaurant {
+    const dto = new Restaurant();
+    dto.id = this.id;
+    dto.rating = this.rating;
+    dto.name = this.name;
+    dto.site = this.site;
+    dto.email = this.email;
+    dto.phone = this.phone;
+    dto.street = this.street;
+    dto.city = this.city;
+    dto.state = this.state;
+    dto.lat = this.lat;
+    dto.lng = this.lng;
+    return dto;
+  }
 }

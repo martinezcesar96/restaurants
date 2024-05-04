@@ -12,6 +12,8 @@ import { RestaurantCreator } from '../src/main/services/restaurant-creator';
 import { RestaurantUpdateController } from '../src/main/controllers/restaurant-update.controller';
 import { RestaurantPartialUpdateController } from '../src/main/controllers/restaurant-partial-update.controller';
 import { RestaurantUpdater } from '../src/main/services/restaurant-updater';
+import { RestaurantDeleteController } from '../src/main/controllers/restaurant-delete.controller';
+import { RestaurantEraser } from '../src/main/services/restaurant-eraser';
 
 @Module({
   imports: [
@@ -35,12 +37,14 @@ import { RestaurantUpdater } from '../src/main/services/restaurant-updater';
     RestaurantCreateController,
     RestaurantUpdateController,
     RestaurantPartialUpdateController,
+    RestaurantDeleteController,
   ],
   providers: [
     RestaurantCSVLoader,
     RestaurantFinder,
     RestaurantCreator,
     RestaurantUpdater,
+    RestaurantEraser,
     {
       provide: 'RestaurantRepository',
       useClass: RestaurantPostgreSQLRepository,

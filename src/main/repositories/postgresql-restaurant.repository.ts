@@ -13,33 +13,32 @@ export class RestaurantPostgreSQLRepository implements RestaurantRepository {
   ) {}
 
   public async saveAll(restaurants: Restaurant[]): Promise<void> {
-    const entities = restaurants.map((restaurant) => {
-      const entity = new RestaurantEntity();
-      entity.id = restaurant.id;
-      entity.rating = restaurant.rating;
-      entity.name = restaurant.name;
-      entity.site = restaurant.site;
-      entity.email = restaurant.email;
-      entity.phone = restaurant.phone;
-      entity.street = restaurant.street;
-      entity.city = restaurant.city;
-      entity.state = restaurant.state;
-      entity.lat = restaurant.lat;
-      entity.lng = restaurant.lng;
-      return entity;
-    });
+    const entities = restaurants.map((restaurant) =>
+      RestaurantEntity.fromDto(restaurant),
+    );
     await this.repository.save(entities);
   }
 
-  public findById(id: string): Promise<Restaurant | null> {
-    return this.repository.findOneBy({ id: id });
+  public async findById(id: string): Promise<Restaurant | null> {
+    const found = await this.repository.findOneBy({ id, deleted: false });
+    return found ? found.toDto() : null;
   }
 
   public async findAll(): Promise<Restaurant[]> {
-    return this.repository.find();
+    const found = await this.repository.findBy({ deleted: false });
+    return found.map((entity) => entity.toDto());
   }
 
   public async save(restaurant: Restaurant): Promise<void> {
-    await this.repository.save(restaurant);
+    await this.repository.save(RestaurantEntity.fromDto(restaurant));
+  }
+
+  public async softDelete(id: string): Promise<void> {
+    const found = await this.repository.findOneBy({ id });
+    if (!found) {
+      return;
+    }
+    found.deleted = true;
+    await this.repository.save(found);
   }
 }
